@@ -1,10 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const AdminRoute = ({children}) => {
-   const {isAunthenticated , user} = useSelector((state) => state.auth);
-   const isAdmin = user?.role ==="ROLE_ADMIN" || user?.role === "ADMIN";
+   const {isAunthenticated , isAdmin} = useAuth();
 
    if(!isAunthenticated || !isAdmin ){
     return <Navigate to ="/login" replace />
